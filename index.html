@@ -1,77 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Danger Blaze</title>
-
-<style>
-
-body{
-    background:#101010;
-    color:#f0f0f0;
-    font-family:Arial,Helvetica,sans-serif;
-    margin:auto;
-    max-width:900px;
-    padding:40px;
-    line-height:1.6;
-}
-
-h1{
-    font-size:56px;
-    margin-bottom:0;
-}
-
-h2{
-    color:#d6a24a;
-}
-
-.card{
-    background:#202020;
-    padding:25px;
-    border-radius:12px;
-    margin-top:25px;
-}
-
-</style>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carnaltopia: Come Over Anyway — Danger Blaze</title>
+  <meta name="description" content="Carnaltopia: Come Over Anyway, Book One of the Carnaltopia series by Danger Blaze. Releases September 14, 2026.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="book">
+  <meta property="og:title" content="Carnaltopia: Come Over Anyway">
+  <meta property="og:description" content="One phone call. One invitation. One life that would never be the same.">
+  <meta property="og:image" content="assets/social-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-config.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Come Over Anyway",
+    "author": {"@type": "Person", "name": "Danger Blaze"},
+    "isPartOf": {"@type": "BookSeries", "name": "Carnaltopia"},
+    "datePublished": "2026-09-14",
+    "inLanguage": "en",
+    "genre": ["Erotic fiction", "Romance"],
+    "image": "assets/come-over-anyway-cover.jpg"
+  }
+  </script>
 </head>
-
 <body>
+  <header>
+    <div class="wrap brand">
+      <div>
+        <div class="brand-name">Danger Blaze</div>
+        <div class="brand-sub">Author of the Carnaltopia series</div>
+      </div>
+      <div class="brand-sub">Book One</div>
+    </div>
+  </header>
 
-<h1>Danger Blaze</h1>
+  <main>
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">Carnaltopia · Book One</div>
+        <h1>Come Over<br>Anyway</h1>
+        <div class="subtitle">One phone call. One invitation. One life that would never be the same.</div>
+        <p class="hook">
+          After the Angela debacle, almost a month passed. Neither of them called. He was done. She wasn’t.
+          What started as a phone call about boxes became the most important decision Damian ever made.
+        </p>
+        <p class="launchline">
+          <strong>September 14, 2026</strong> · <span id="price">$4.99</span>
+          <span id="countdown"></span>
+        </p>
+        <div class="actions">
+          <a id="buy" class="button primary disabled" href="#" aria-disabled="true">Amazon link coming at launch</a>
+          <a class="button secondary" href="#about">What is Carnaltopia?</a>
+        </div>
+        <div class="warning">For adult readers. Carnaltopia contains explicit sexual content.</div>
+      </div>
 
-<p>
-Author of the <strong>Carnaltopia Series</strong>
-</p>
+      <div class="cover-wrap">
+        <img class="cover" src="assets/come-over-anyway-cover.jpg"
+             alt="Cover of Carnaltopia: Come Over Anyway by Danger Blaze">
+      </div>
+    </div>
 
-<div class="card">
+    <section id="about">
+      <div class="wrap">
+        <div class="eyebrow">The series begins here</div>
+        <h2>A story about what happens after “why not?”</h2>
+        <div class="copy">
+          <p>
+            <em>Come Over Anyway</em> begins with two people and a choice. What follows is explicit,
+            funny, unconventional, and centered on the relationships that grow from people being
+            allowed to be exactly who they are.
+          </p>
+          <p>
+            This page deliberately stops at Book One. No encyclopedia, no future-world spoilers,
+            no homework. Meet the people first.
+          </p>
+        </div>
+        <div class="facts">
+          <div class="fact"><strong>Series</strong>Carnaltopia</div>
+          <div class="fact"><strong>Author</strong>Danger Blaze</div>
+          <div class="fact"><strong>Release</strong>September 14, 2026</div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<h2>Carnaltopia: Come Over Anyway</h2>
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> Danger Blaze. All rights reserved.
+    </div>
+  </footer>
 
-<p>
-A novel exploring love, sexuality, and human relationships.
-</p>
+  <script>
+    (() => {
+      const cfg = window.CARNALTOPIA || {};
+      document.getElementById("price").textContent = cfg.price || "$4.99";
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-</div>
+      const buy = document.getElementById("buy");
+      if (cfg.amazonUrl) {
+        buy.href = cfg.amazonUrl;
+        buy.textContent = "Buy on Amazon";
+        buy.classList.remove("disabled");
+        buy.removeAttribute("aria-disabled");
+      }
 
-<div class="card">
+      const target = new Date(cfg.releaseDate || "2026-09-14T00:00:00-06:00");
+      const countdown = document.getElementById("countdown");
 
-<h2>The Niche and Nookie Book</h2>
-
-<p>
-An interactive reference of sex positions featuring powerful search,
-ratings, illustrations, and a
-<strong>"We're Feelin' Lucky!"</strong>
-randomizer.
-</p>
-
-<p>
-
-Currently under development.
-
-</p>
-
-</div>
-
+      function renderCountdown() {
+        const delta = target - new Date();
+        if (delta <= 0) {
+          countdown.textContent = " · Available now";
+          return;
+        }
+        const days = Math.ceil(delta / 86400000);
+        countdown.textContent = ` · ${days} day${days === 1 ? "" : "s"} to release`;
+      }
+      renderCountdown();
+      setInterval(renderCountdown, 3600000);
+    })();
+  </script>
 </body>
 </html>
